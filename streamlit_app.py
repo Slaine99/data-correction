@@ -13,6 +13,8 @@ import time
 import pymongo
 import uuid
 from streamlit_js_eval import streamlit_js_eval
+import certifi
+ca = certifi.where()
 
 USER_AVATAR = "👤"
 BOT_AVATAR = "🤖"
@@ -70,7 +72,7 @@ def parse_conversation(conversation_history, count_from_last = 20, display_only 
 def connect_to_mongodb():
     # url = "mongodb://localhost:27017/" LOCAL
     url = "mongodb+srv://phillipandrewespina:Firiyuu77@cluster0.gvlsxm5.mongodb.net/"
-    client = pymongo.MongoClient(url)
+    client = pymongo.MongoClient(url, tlsCAFile=ca)
     return client
 
 # Function to save conversation data to MongoDB
